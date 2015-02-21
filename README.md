@@ -1,4 +1,4 @@
-# policystat-sauce-browsers [![NPM version](https://badge.fury.io/js/policystat-sauce-browsers.svg)](http://badge.fury.io/js/policystat-sauce-browsers)  [![Build Status](https://github.com/mightyiam/policystat-sauce-browsers.svg)](https://github.com/mightyiam/policystat-sauce-browsers) 
+# policystat-sauce-browsers [![NPM version](https://badge.fury.io/js/policystat-sauce-browsers.svg)](http://badge.fury.io/js/policystat-sauce-browsers)  [![Build Status](https://travis-ci.org/mightyiam/policystat-sauce-browsers.svg)](https://travis-ci.org/mightyiam/policystat-sauce-browsers) 
 
 If you’d like to use [karma-sauce-launcher](https://www.npmjs.com/package/karma-sauce-launcher)
 with the same browsers in numerous projects and you happen to be developing for PolicyStat

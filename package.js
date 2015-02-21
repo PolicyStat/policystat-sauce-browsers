@@ -28,5 +28,5 @@ object.license = 'MIT'
 object.description = 'PolicyStat\'s Sauce Labs browsers'
 object.repository = {
   type: 'git',
-  url: 'https://github.com/mightyiam/policystat-sauce-browsers'
+  url: 'https://github.com/mightyiam/policystat-sauce-browsers.git'
 }
