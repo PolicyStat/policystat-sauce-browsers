@@ -12,6 +12,7 @@ object.scripts = {
 object.devDependencies = {
   'mightyiam': '^1.1.5',
   'auto-package': '^0.1.1',
+  'verb-cli': '^0.4.3',
   standard: '*',
   'lodash.isplainobject': '^3.0.0',
   'lodash.isarray': '^3.0.0',
