@@ -4,6 +4,9 @@ var isPlainObject = require('lodash.isplainobject')
 var forEach = require('foreach')
 
 var moduleName = 'index'
+
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000
+
 describe(moduleName, function () {
   var psBrowsers = require('../')
 
