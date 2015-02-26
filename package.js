@@ -21,6 +21,7 @@ object.devDependencies = {
 }
 object.dependencies = {
   'to-object': '^0.0.1',
+  foreach: '^2.0.5',
   'get-saucelabs-browsers': '^1.0.0'
 }
 object.main = 'lib/index.js'

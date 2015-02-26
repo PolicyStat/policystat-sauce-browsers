@@ -67,6 +67,15 @@ describe(moduleName, function () {
               done()
             })
           })
+          it('have a \'SauceLabs\' `base` property', function (done) {
+            psBrowsers(function (err, browsersConf) {
+              if (err) throw err
+              forEach(browsersConf, function (browser) {
+                expect(browser.base).toBe('SauceLabs')
+              })
+              done()
+            })
+          })
         })
       })
     })
