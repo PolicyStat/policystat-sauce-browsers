@@ -1,5 +1,6 @@
 var auto = require('auto-package')
 var content = auto.content
+var policystat = require('policystat')
 
 content.name = 'policystat-sauce-browsers'
 auto.versionFile()
@@ -11,6 +12,7 @@ content.scripts = {
 }
 content.devDependencies = {
   'mightyiam': '^1.1.5',
+  'policystat': '^1.1.0',
   'auto-package': '^0.2.0',
   'verb-cli': '^0.4.3',
   standard: '*',
@@ -28,6 +30,7 @@ content.main = 'lib/index.js'
 content.license = 'MIT'
 content.description = 'PolicyStat\'s Sauce Labs browsers'
 auto.githubRepo('PolicyStat/policystat-sauce-browsers')
+content.copyright = policystat.copyrightNotice
 content.keywords = [
   'browsers',
   'sauce',
