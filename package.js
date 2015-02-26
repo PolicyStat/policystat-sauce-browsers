@@ -28,3 +28,9 @@ content.main = 'lib/index.js'
 content.license = 'MIT'
 content.description = 'PolicyStat\'s Sauce Labs browsers'
 auto.githubRepo('PolicyStat/policystat-sauce-browsers')
+content.keywords = [
+  'browsers',
+  'sauce',
+  'saucelabs',
+  'policystat'
+]
