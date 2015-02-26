@@ -1,33 +1,43 @@
-var Package = require('auto-package')
-var object = Package.package
+var auto = require('auto-package')
+var content = auto.content
+var policystat = require('policystat')
+var license = policystat.openSource.license.spdx
 
-object.name = 'policystat-sauce-browsers'
-Package.version_file()
-object.author = require('mightyiam').authorStr
-object.scripts = {
+content.name = 'policystat-sauce-browsers'
+auto.versionFile()
+content.author = require('mightyiam').authorStr
+content.scripts = {
+  license: 'license-generator install ' + license.toLowerCase() +
+    ' -n ' + policystat.name.pretty,
   lint: 'standard',
   unit: 'jasmine',
-  test: 'npm run lint && npm run unit'
+  test: 'npm run lint && npm run license && npm run unit'
 }
-object.devDependencies = {
+content.devDependencies = {
   'mightyiam': '^1.1.5',
-  'auto-package': '^0.1.1',
+  'policystat': '^1.2.2',
+  'auto-package': '^0.2.0',
   'verb-cli': '^0.4.3',
   standard: '*',
   'lodash.isplainobject': '^3.0.0',
   'lodash.isarray': '^3.0.0',
   foreach: '^2.0.5',
+  'license-generator': '^0.0.13',
   jasmine: '^2.2.1'
 }
-object.dependencies = {
+content.dependencies = {
   'to-object': '^0.0.1',
   foreach: '^2.0.5',
   'get-saucelabs-browsers': '^1.0.0'
 }
-object.main = 'lib/index.js'
-object.license = 'MIT'
-object.description = 'PolicyStat\'s Sauce Labs browsers'
-object.repository = {
-  type: 'git',
-  url: 'https://github.com/PolicyStat/policystat-sauce-browsers.git'
-}
+content.main = 'lib/index.js'
+content.license = license
+content.description = 'PolicyStat\'s Sauce Labs browsers'
+auto.githubRepo('PolicyStat/policystat-sauce-browsers')
+content.copyright = policystat.copyrightNotice
+content.keywords = [
+  'browsers',
+  'sauce',
+  'saucelabs',
+  'policystat'
+]
