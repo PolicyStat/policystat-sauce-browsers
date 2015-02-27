@@ -1,19 +1,17 @@
-/* eslint-env jasmine */
+/* eslint-env mocha */
 
-var isPlainObject = require('lodash.isplainobject')
 var forEach = require('foreach')
-var SpecReporter = require('jasmine-spec-reporter')
+require('chai').should()
 
 var moduleName = 'index'
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000
-jasmine.getEnv().addReporter(new SpecReporter())
-
 describe(moduleName, function () {
+  this.timeout(10000)
+
   var psBrowsers = require('../')
 
   it('is a function', function () {
-    expect(typeof psBrowsers === 'function').toBe(true)
+    psBrowsers.should.be.a('function')
   })
 
   it('calls back', function (done) {
@@ -37,7 +35,7 @@ describe(moduleName, function () {
       it('is an object', function (done) {
         psBrowsers(function (err, browsersConf) {
           if (err) throw err
-          expect(isPlainObject(browsersConf)).toBe(true)
+          browsersConf.should.be.an('object')
           done()
         })
       })
@@ -51,7 +49,7 @@ describe(moduleName, function () {
               return a - b
             })
             keys.forEach(function (value, index) {
-              expect(value).toBe(index.toString())
+              value.should.equal(index.toString())
             })
             done()
           })
@@ -62,9 +60,9 @@ describe(moduleName, function () {
             psBrowsers(function (err, browsersConf) {
               if (err) throw err
               forEach(browsersConf, function (browser) {
-                expect(typeof browser.browserName === 'string').toBe(true)
-                expect(typeof browser.version === 'string').toBe(true)
-                expect(typeof browser.platform === 'string').toBe(true)
+                browser.browserName.should.be.a('string')
+                browser.version.should.be.a('string')
+                browser.platform.should.be.a('string')
               })
               done()
             })
@@ -73,7 +71,7 @@ describe(moduleName, function () {
             psBrowsers(function (err, browsersConf) {
               if (err) throw err
               forEach(browsersConf, function (browser) {
-                expect(browser.base).toBe('SauceLabs')
+                browser.base.should.equal('SauceLabs')
               })
               done()
             })
