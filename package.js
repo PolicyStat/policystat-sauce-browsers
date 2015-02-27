@@ -23,6 +23,7 @@ content.devDependencies = {
   'lodash.isarray': '^3.0.0',
   foreach: '^2.0.5',
   'license-generator': '^0.0.13',
+  'jasmine-spec-reporter': '^2.1.0',
   jasmine: '^2.2.1'
 }
 content.dependencies = {
