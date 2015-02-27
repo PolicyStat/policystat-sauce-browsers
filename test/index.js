@@ -1,11 +1,29 @@
 /* eslint-env mocha */
 
-var forEach = require('foreach')
 require('chai').should()
 
-var moduleName = 'index'
+var schema = {
+  type: 'object',
+  additionalProperties: false,
+  patternProperties: {
+    '[0-9]*': {
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        browserName: {type: 'string'},
+        version: {type: 'string'},
+        platform: {type: 'string'},
+        base: {type: 'string', enum: ['SauceLabs']}
+      },
+      required: ['browserName', 'version', 'platform', 'base']
+    }
+  }
+}
 
-describe(moduleName, function () {
+var ZSchema = require('z-schema')
+var validator = new ZSchema()
+
+describe('exports', function () {
   this.timeout(10000)
 
   var psBrowsers = require('../')
@@ -32,50 +50,16 @@ describe(moduleName, function () {
     })
 
     describe('the second argument', function () {
-      it('is an object', function (done) {
+      it('is valid according to the schema', function (done) {
         psBrowsers(function (err, browsersConf) {
           if (err) throw err
-          browsersConf.should.be.an('object')
+          var valid = validator.validate(browsersConf, schema)
+          if (!valid) {
+            var errors = validator.getLastErrors()
+            console.log(errors)
+          }
+          valid.should.be.true
           done()
-        })
-      })
-
-      describe('has keys', function () {
-        it('from 0 and up', function (done) {
-          psBrowsers(function (err, browsersConf) {
-            if (err) throw err
-            var keys = Object.keys(browsersConf)
-            keys.sort(function (a, b) {
-              return a - b
-            })
-            keys.forEach(function (value, index) {
-              value.should.equal(index.toString())
-            })
-            done()
-          })
-        })
-
-        describe('which', function () {
-          it('have a strings `browserName`, `version` and `platform`', function (done) {
-            psBrowsers(function (err, browsersConf) {
-              if (err) throw err
-              forEach(browsersConf, function (browser) {
-                browser.browserName.should.be.a('string')
-                browser.version.should.be.a('string')
-                browser.platform.should.be.a('string')
-              })
-              done()
-            })
-          })
-          it('have a \'SauceLabs\' `base` property', function (done) {
-            psBrowsers(function (err, browsersConf) {
-              if (err) throw err
-              forEach(browsersConf, function (browser) {
-                browser.base.should.equal('SauceLabs')
-              })
-              done()
-            })
-          })
         })
       })
     })

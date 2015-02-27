@@ -19,9 +19,9 @@ content.devDependencies = {
   'auto-package': '^0.2.0',
   'verb-cli': '^0.4.3',
   standard: '*',
-  foreach: '^2.0.5',
   'license-generator': '^0.0.13',
   mocha: '^2.1.0',
+  'z-schema': '^3.4.3',
   chai: '^2.1.0'
 }
 content.dependencies = {
