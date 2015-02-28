@@ -1,6 +1,8 @@
 /* eslint-env mocha */
 
-require('chai').should()
+var chai = require('chai')
+chai.use(require('chai-as-promised'))
+chai.should()
 
 var schema = {
   type: 'object',
@@ -22,46 +24,19 @@ var schema = {
 
 var ZSchema = require('z-schema')
 var validator = new ZSchema()
+var browsers = require('../')
 
 describe('exports', function () {
   this.timeout(10000)
 
-  var psBrowsers = require('../')
-
-  it('is a function', function () {
-    psBrowsers.should.be.a('function')
-  })
-
-  it('calls back', function (done) {
-    psBrowsers(function () {
-      done()
-    })
-  })
-
-  describe('in the callback', function () {
-    describe('the first argument', function () {
-      it('might be an error', function (done) {
-        // how can I cause this to error in the test run?
-        psBrowsers(function (err) {
-          if (err) throw err
-          done()
-        })
-      })
-    })
-
-    describe('the second argument', function () {
-      it('is valid according to the schema', function (done) {
-        psBrowsers(function (err, browsersConf) {
-          if (err) throw err
-          var valid = validator.validate(browsersConf, schema)
-          if (!valid) {
-            var errors = validator.getLastErrors()
-            console.log(errors)
-          }
-          valid.should.be.true
-          done()
-        })
-      })
-    })
+  it('is a promise that fulfills according to the schema', function () {
+    return browsers.then(function (browsers) {
+      var valid = validator.validate(browsers, schema)
+      if (!valid) {
+        var errors = validator.getLastErrors()
+        console.log(errors)
+      }
+      return valid
+    }).should.eventually.be.true
   })
 })

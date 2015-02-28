@@ -9,14 +9,15 @@ PolicyStat would like to test against.
 
 In your `karma.conf.js`:
 ```js
+// the browsers available from Sauce Labs are retrieved using an HTTPS request.
+// therefore, this is a promise
 var psBrowsers = require('policystat-sauce-browsers')
 
-// there is an HTTPS request to get the latest browsers from Sauce Labs
-// so this is asynchronous
-psBrowsers(function (err, browsersConf) {
-  if (err) throw err
-
-  // `browsersConf` is what you’re looking for
+psBrowsers.then(function (browsers) {
+  // browsers is what you’re after
+  // configure Karma here
+}).catch(function (reason) {
+  // handle failure
 })
 ```
 
