@@ -22,9 +22,11 @@ content.devDependencies = {
   'license-generator': '^0.0.13',
   mocha: '^2.1.0',
   'z-schema': '^3.4.3',
+  'chai-as-promised': '^4.2.0',
   chai: '^2.1.0'
 }
 content.dependencies = {
+  'bluebird': '^2.9.12',
   'to-object': '^0.0.1',
   foreach: '^2.0.5',
   'get-saucelabs-browsers': '^1.0.0'
