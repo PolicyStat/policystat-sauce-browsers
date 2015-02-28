@@ -29,7 +29,7 @@ var browsers = require('../')
 describe('exports', function () {
   this.timeout(10000)
 
-  it('is a promise that fulfills according to the schema', function (done) {
+  it('is a promise that fulfills according to the schema', function () {
     return browsers.then(function (browsers) {
       var valid = validator.validate(browsers, schema)
       if (!valid) {
